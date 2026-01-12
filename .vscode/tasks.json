@@ -1,0 +1,23 @@
+{
+"version": "2.0.0",
+"tasks": [
+{
+"label": "build",
+"type": "shell",
+"command": "g++",
+"args": [
+"-std=c++20",
+"-I/mingw64/include",
+"src/main.cpp",
+"-L/mingw64/lib",
+"-lpq",
+"-o",
+"out/app.exe"
+],
+"group": {
+"kind": "build",
+"isDefault": true
+}
+}
+]
+}
