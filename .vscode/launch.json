@@ -5,13 +5,13 @@
             "name": "Build and Debug",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/out/app.exe",
+            "program": "${workspaceFolder}/out/stream-flix-heroes.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": true,
-            "preLaunchTask": "build",
+            "preLaunchTask": "Build Windows",
             "MIMode": "gdb",
             "miDebuggerPath": "gdb"
         }

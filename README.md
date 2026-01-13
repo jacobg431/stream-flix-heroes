@@ -25,6 +25,8 @@ git clone https://github.com/jacobg431/stream-flix-heroes.git
 To allow for local PostgreSQL server connection and let VS Code know your OS, run the setup environment script:
 
 ```bash
+cd "path/to/stream-flix-heroes"
+chmod +x .setup-environment.sh
 ./setup-environment.sh
 ```
 
