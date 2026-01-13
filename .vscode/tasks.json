@@ -1,0 +1,36 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build",
+      "type": "shell",
+      "command": "C:\\Program Files (x86)\\msys2\\mingw64.exe",
+      "args": [
+        "-c",
+        "rm -rf out && cmake -S . -B out && cmake --build out"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Build Unix",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-c",
+        "rm -rf out && cmake -S . -B out && cmake --build out"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "build",
+      "problemMatcher": ["$gcc"]
+    }
+  ]
+}
