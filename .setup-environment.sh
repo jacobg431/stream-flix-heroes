@@ -14,10 +14,10 @@ OS_NAME="unknown"
 
 case "$(uname -s)" in
   Linux*)
-    OS_NAME="linux"
+    OS_NAME="unix"
     ;;
   Darwin*)
-    OS_NAME="macos"
+    OS_NAME="unix"
     ;;
   MINGW*|MSYS*|CYGWIN*)
     OS_NAME="windows"

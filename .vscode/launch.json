@@ -11,7 +11,7 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": true,
-            "preLaunchTask": "Build Windows",
+            "preLaunchTask": "${env:OS}",
             "MIMode": "gdb",
             "miDebuggerPath": "gdb"
         }

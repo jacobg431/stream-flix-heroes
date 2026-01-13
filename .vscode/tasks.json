@@ -2,9 +2,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Build",
+      "label": "windows",
       "type": "shell",
-      "command": "C:\\Program Files (x86)\\msys2\\mingw64.exe",
+      "command": "${env:MinGW64_PATH}",
       "args": [
         "-c",
         "rm -rf out && cmake -S . -B out && cmake --build out"
@@ -19,7 +19,7 @@
       "problemMatcher": ["$gcc"]
     },
     {
-      "label": "Build Unix",
+      "label": "unix",
       "type": "shell",
       "command": "bash",
       "args": [
