@@ -12,12 +12,6 @@ int main()
     std::string password;
     std::string database;
 
-    std::cout << "Port number: ";
-    std::cin >> port;
-
-    // Discard leftover newline
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
     std::cout << "Username: ";
     std::getline(std::cin, username);
 
@@ -28,8 +22,8 @@ int main()
     std::getline(std::cin, database);
 
     PGconn* conn = PQsetdbLogin(
-        "localhost",
-        std::to_string(port).c_str(),
+        nullptr,
+        nullptr,
         nullptr,
         nullptr,
         database.c_str(),
