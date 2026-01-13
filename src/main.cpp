@@ -10,6 +10,7 @@ int main()
     int port;
     std::string username;
     std::string password;
+    std::string database;
 
     std::cout << "Port number: ";
     std::cin >> port;
@@ -23,12 +24,15 @@ int main()
     std::cout << "Password: ";
     std::getline(std::cin, password);
 
+    std::cout << "Database: ";
+    std::getline(std::cin, database);
+
     PGconn* conn = PQsetdbLogin(
         "localhost",
         std::to_string(port).c_str(),
         nullptr,
         nullptr,
-        "postgres",
+        database.c_str(),
         username.c_str(),
         password.c_str()
     );
