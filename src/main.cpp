@@ -4,6 +4,11 @@
 #include <sstream>
 #include <limits>
 
+
+void ReadAllUsers(); 
+
+
+
 int main()
 {
 
@@ -43,4 +48,9 @@ int main()
     PQfinish(conn);
     return 0;
 
+}
+
+
+void ReadAllUsers(){
+    
 }
