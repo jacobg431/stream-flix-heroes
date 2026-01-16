@@ -3,15 +3,14 @@
 #include <string>
 #include <sstream>
 #include <limits>
-
-
-void ReadAllUsers(); 
-
-
+#include "Database/DbConnection.hpp"
+#include "Services/StreamflixService.hpp"
+#include "Repositories/GenericUserRepository.hpp"
+#include "Repositories/GenericMovieRepository.hpp"
+#include "Models/Movie.hpp"
 
 int main()
 {
-
     int port;
     std::string username;
     std::string password;
@@ -26,31 +25,17 @@ int main()
     std::cout << "Database: ";
     std::getline(std::cin, database);
 
-    PGconn* conn = PQsetdbLogin(
-        nullptr,
-        nullptr,
-        nullptr,
-        nullptr,
-        database.c_str(),
-        username.c_str(),
-        password.c_str()
-    );
+    DbConnection dbConnection(username, password, database);
+    GenericMovieRepository movieRepository(dbConnection);
+    GenericUserRepository userRepository(dbConnection);
 
-    if (PQstatus(conn) != CONNECTION_OK)
-    {
-        std::cerr << "Connection failed: " << PQerrorMessage(conn);
-        PQfinish(conn);
-        return 1;
-    }
+    StreamflixService service(userRepository, movieRepository);
 
-    std::cout << "Connected to PostgreSQL successfully." << std::endl;
+    std::cout << "Connected to database successfully." << std::endl;
 
-    PQfinish(conn);
+    User user = service.getUserByName("Alice", "Johnson");
+
+    std::cout << "User Retrieved: " << user.getName() << ", Email: " << user.getEmail() << std::endl;
+
     return 0;
-
-}
-
-
-void ReadAllUsers(){
-    
 }

@@ -1,26 +1,34 @@
 #pragma once
 #include <string>
 
+class Movie
+{
+private:
+    std::string _title;
+    int _movieId;
+    std::string _genre;
+    int _releaseYear;
+    double _rating;
+    int _duration;
 
-class Movie{
-private: 
-    std::string _title; 
-    int _movieId; 
-    std::string _genre; 
-    int _releaseYear; 
-    double _rating; 
-    int _duration; 
+public:
+    Movie(std::string title, int movieId, std::string genre, int releaseYear, double rating, int duration);
 
+    void setTitle(const std::string &title);
+    std::string getTitle() const;
 
-public: 
-    Movie(std::string title, int movieId, std::string genre, int releaseYear, double rating, int duration); 
-    std::string getTitle(); 
-    int getId(); 
-    std::string getGenre(); 
-    int getReleaseYear(); 
-    double getRating(); 
-    int getDuration(); 
+    void setId(int movieId);
+    int getId() const;
 
+    void setGenre(const std::string &genre);
+    std::string getGenre() const;
 
+    void setReleaseYear(int releaseYear);
+    int getReleaseYear() const;
+    
+    void setRating(double rating);
+    double getRating() const;
 
-}; 
+    void setDuration(int duration);
+    int getDuration() const;
+};
