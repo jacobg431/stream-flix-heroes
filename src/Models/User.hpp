@@ -1,25 +1,21 @@
 #pragma once
 #include <string>
-#include "UserSubscriptionType.hpp"
 #include <chrono>
 
-
-class User{
+class User
+{
 private:
-    std::string _name; 
-    int _userId; 
-    std::string _email; 
-    UserSubscriptionType _subscriptionType; 
-    std::chrono::system_clock::time_point _dateJoined; 
-
+    std::string _name;
+    int _userId;
+    std::string _email;
+    std::string _subscriptionType;
+    std::chrono::system_clock::time_point _dateJoined;
 
 public:
-    User(std::string name, int userId, std::string email, UserSubscriptionType subscriptionType);
-    std::string getName();
-    int getId(); 
-    std::string getEmail(); 
-    UserSubscriptionType getSubscriptionType();
-    std::chrono::system_clock::time_point getDateJoined();
-
-
+    User(std::string name, int userId, std::string email, std::string subscriptionType);
+    std::string getName() const;
+    int getId() const;
+    std::string getEmail() const;
+    std::string getSubscriptionType() const;
+    std::chrono::system_clock::time_point getDateJoined() const;
 };
