@@ -2,7 +2,7 @@
 
 DbConnection::DbConnection(const std::string &database, const std::string &username, const std::string &password)
 {
-    PGconn *_connection = PQsetdbLogin(
+    _connection = PQsetdbLogin(
         nullptr,
         nullptr,
         nullptr,
