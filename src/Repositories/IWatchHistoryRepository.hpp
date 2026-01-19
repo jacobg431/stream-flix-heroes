@@ -10,7 +10,9 @@ class IWatchHistoryRepository
 public:
     virtual ~IWatchHistoryRepository() = default;
 
-    virtual WatchHistory selectWatchHistoriyByMovieAndUser(Movie &movie, User &user) const = 0;
+    virtual WatchHistory selectWatchHistoryById(int watchId) const = 0;
+
+    virtual WatchHistory selectWatchHistoryByUserIdAndMovieId(int userId, int movieId) const = 0;
 
     virtual std::vector<WatchHistory> selectWatchHistoriesWithCompletionPercentage(double completionPercentage) const = 0;
 

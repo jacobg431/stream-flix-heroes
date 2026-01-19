@@ -9,7 +9,9 @@ class GenericWatchHistoryRepository : public IWatchHistoryRepository
 public:
     GenericWatchHistoryRepository(DbConnection &dbConnection);
 
-    WatchHistory selectWatchHistoryByMovieAndUser(Movie &movie, User &user);
+    WatchHistory selectWatchHistoryById(int watchId);
+
+    WatchHistory selectWatchHistoryByUserIdAndMovieId(int userId, int movieId);
 
     std::vector<WatchHistory> selectWatchHistoriesWithCompletionPercentage(double completionPercentage);
 
