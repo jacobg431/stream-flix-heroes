@@ -3,7 +3,7 @@
 DbConnection::DbConnection(const std::string &database, const std::string &username, const std::string &password)
 {
     _connection = PQsetdbLogin(
-        nullptr,
+        "localhost",
         nullptr,
         nullptr,
         nullptr,
