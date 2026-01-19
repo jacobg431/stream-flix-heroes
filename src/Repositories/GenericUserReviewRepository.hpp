@@ -10,9 +10,9 @@ class GenericUserReviewRepository : public IUserReviewRepository
 public:
     GenericUserReviewRepository(DbConnection &dbConnection);
 
-    std::vector<UserReview> selectReviewsByUser(const User &user);
+    std::vector<UserReview> selectReviewsByUser(const int userId);
 
-    std::vector<UserReview> selectReviewsOfMovie(const User &user);
+    std::vector<UserReview> selectReviewsOfMovie(const int movieId);
 
 private:
     DbConnection &_dbConnection;

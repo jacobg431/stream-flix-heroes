@@ -9,9 +9,9 @@ class IUserReviewRepository
 public:
     virtual ~IUserReviewRepository() = default;
 
-    virtual std::vector<UserReview> selectReviewsByUser(const User &user) const = 0;
+    virtual std::vector<UserReview> selectReviewsByUser(const int userId) const = 0;
 
-    virtual std::vector<UserReview> selectReviewsOfMovie(const User &user) const = 0;
+    virtual std::vector<UserReview> selectReviewsOfMovie(const int movieId) const = 0;
 
 protected:
     std::string queryWhereClause;
