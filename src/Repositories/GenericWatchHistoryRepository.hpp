@@ -4,7 +4,7 @@
 #include "../Models/User.hpp"
 #include "../Database/DbConnection.hpp"
 
-class GenericWatchHistoryRepository implements IWatchHistoryRepository
+class GenericWatchHistoryRepository : public IWatchHistoryRepository
 {
 public:
     GenericWatchHistoryRepository(DbConnection &dbConnection);
