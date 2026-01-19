@@ -1,11 +1,21 @@
 #include "User.hpp"
 #include <string>
 
-User::User(std::string name, int userId, std::string email, std::string subscriptionType) : _name(name), _userId(userId), _email(email), _subscriptionType(subscriptionType) {}
+User::User(std::string firstName, std::string lastName, int userId, std::string email, std::string subscriptionType) : _firstName(firstName), _lastName(lastName), _userId(userId), _email(email), _subscriptionType(subscriptionType) {}
 
 std::string User::getName() const
 {
-    return _name;
+    return getFirstName() + " " + getLastName();
+}
+
+std::string User::getFirstName() const
+{
+    return _firstName;
+}
+
+std::string User::getLastName() const
+{
+    return _lastName;
 }
 
 int User::getId() const
@@ -30,7 +40,8 @@ std::chrono::system_clock::time_point User::getDateJoined() const
 bool User::operator==(const User &other) const
 {
     return _userId == other._userId
-        && _name == other._name
+        && _firstName == other._firstName
+        && _lastName == other._lastName
         && _email == other._email
         && _subscriptionType == other._subscriptionType;
 }
