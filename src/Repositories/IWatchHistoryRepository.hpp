@@ -14,7 +14,7 @@ public:
 
     virtual std::vector<WatchHistory> selectWatchHistoriesWithCompletionPercentage(double completionPercentage) const = 0;
 
-    virtual std::vector<WatchHistory> selectWatchHistoriesLaterThan(int year, int month, int day) const = 0;
+    virtual std::vector<WatchHistory> selectWatchHistoriesLaterThan(std::chrono::system_clock::time_point dateWatched) const = 0;
 
 protected:
     std::string queryWhereClause;
