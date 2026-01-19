@@ -11,45 +11,45 @@ USE StreamFlix;
 GO
 
 -- Users Table
-CREATE TABLE Users (
-    UserId INT IDENTITY(1,1) PRIMARY KEY,
-    FirstName NVARCHAR(50) NOT NULL,
-    LastName NVARCHAR(50) NOT NULL,
-    Email NVARCHAR(100) UNIQUE NOT NULL,
-    Password NVARCHAR(100) NOT NULL,
-    SubscriptionType NVARCHAR(10) CHECK (SubscriptionType IN ('Free', 'Basic', 'Premium')) DEFAULT 'Free',
-    DateJoined DATETIME DEFAULT GETDATE()
+CREATE TABLE "Users" (
+    "UserId" INT IDENTITY(1,1) PRIMARY KEY,
+    "FirstName" NVARCHAR(50) NOT NULL,
+    "LastName" NVARCHAR(50) NOT NULL,
+    "Email" NVARCHAR(100) UNIQUE NOT NULL,
+    "Password" NVARCHAR(100) NOT NULL,
+    "SubscriptionType" NVARCHAR(10) CHECK ("SubscriptionType" IN ('Free', 'Basic', 'Premium')) DEFAULT 'Free',
+    "DateJoined" DATETIME DEFAULT GETDATE()
 );
 
 -- Movies Table
-CREATE TABLE Movies (
-    MovieId INT IDENTITY(1,1) PRIMARY KEY,
-    Title NVARCHAR(200) NOT NULL,
-    Genre NVARCHAR(50) NOT NULL,
-    ReleaseYear INT NOT NULL,
-    Rating DECIMAL(3, 1) CHECK (Rating >= 0 AND Rating <= 10),
-    Duration INT NOT NULL -- Duration in minutes
+CREATE TABLE "Movies" (
+    "MovieId" INT IDENTITY(1,1) PRIMARY KEY,
+    "Title" NVARCHAR(200) NOT NULL,
+    "Genre" NVARCHAR(50) NOT NULL,
+    "ReleaseYear" INT NOT NULL,
+    "Rating" DECIMAL(3, 1) CHECK (Rating >= 0 AND Rating <= 10),
+    "Duration" INT NOT NULL -- Duration in minutes
 );
 
 -- WatchHistory Table
-CREATE TABLE WatchHistory (
-    WatchId INT IDENTITY(1,1) PRIMARY KEY,
-    UserId INT NOT NULL,
-    MovieId INT NOT NULL,
-    WatchDate DATETIME DEFAULT GETDATE(),
-    CompletionPercentage DECIMAL(5, 2) CHECK (CompletionPercentage >= 0 AND CompletionPercentage <= 100),
+CREATE TABLE "WatchHistory" (
+    "WatchId" INT IDENTITY(1,1) PRIMARY KEY,
+    "UserId" INT NOT NULL,
+    "MovieId" INT NOT NULL,
+    "WatchDate" DATETIME DEFAULT GETDATE(),
+    "CompletionPercentage" DECIMAL(5, 2) CHECK ("CompletionPercentage" >= 0 AND "CompletionPercentage" <= 100),
     CONSTRAINT FK_WatchHistory_Users FOREIGN KEY (UserId) REFERENCES Users(UserId) ON DELETE CASCADE,
     CONSTRAINT FK_WatchHistory_Movies FOREIGN KEY (MovieId) REFERENCES Movies(MovieId) ON DELETE CASCADE
 );
 
 -- Reviews Table
-CREATE TABLE Reviews (
-    ReviewId INT IDENTITY(1,1) PRIMARY KEY,
-    UserId INT NOT NULL,
-    MovieId INT NOT NULL,
-    Rating DECIMAL(3, 1) CHECK (Rating >= 0 AND Rating <= 10),
-    Comment NVARCHAR(MAX),
-    ReviewDate DATETIME DEFAULT GETDATE(),
+CREATE TABLE "Reviews" (
+    "ReviewId" INT IDENTITY(1,1) PRIMARY KEY,
+    "UserId" INT NOT NULL,
+    "MovieId" INT NOT NULL,
+    "Rating" DECIMAL(3, 1) CHECK ("Rating" >= 0 AND "Rating" <= 10),
+    "Comment" NVARCHAR(MAX),
+    "ReviewDate" DATETIME DEFAULT GETDATE(),
     CONSTRAINT FK_Reviews_Users FOREIGN KEY (UserId) REFERENCES Users(UserId) ON DELETE CASCADE,
     CONSTRAINT FK_Reviews_Movies FOREIGN KEY (MovieId) REFERENCES Movies(MovieId) ON DELETE CASCADE
 );
@@ -57,7 +57,7 @@ CREATE TABLE Reviews (
 -- Seeding Data for StreamFlix Database
 
 -- Insert 30 users
-INSERT INTO Users (FirstName, LastName, Email, Password, SubscriptionType)
+INSERT INTO "Users" ("FirstName", "LastName", "Email", "Password", "SubscriptionType")
 VALUES
 ('Alice', 'Johnson', 'alice.johnson@example.com', 'password1', 'Premium'),
 ('Bob', 'Smith', 'bob.smith@example.com', 'password2', 'Basic'),
@@ -90,7 +90,7 @@ VALUES
 ('Chloe', 'Cooper', 'chloe.cooper@example.com', 'password29', 'Basic');
 
 -- Insert 100 movies
-INSERT INTO Movies (Title, Genre, ReleaseYear, Rating, Duration)
+INSERT INTO "Movies" ("Title", "Genre", "ReleaseYear", "Rating", "Duration")
 VALUES
 ('Inception', 'Sci-Fi', 2010, 8.8, 148),
 ('The Godfather', 'Crime', 1972, 9.2, 175),
@@ -150,7 +150,7 @@ VALUES
 ('Joker', 'Drama', 2019, 8.4, 122);
 
 -- Insert 10 watch history entries per user
-INSERT INTO WatchHistory (UserId, MovieId, CompletionPercentage)
+INSERT INTO "WatchHistory" ("UserId", "MovieId", "CompletionPercentage")
 VALUES
 (1, 1, 50.0),
 (1, 2, 100.0),
@@ -204,7 +204,7 @@ VALUES
 (5, 50, 90.0);
 
 -- Insert 100 reviews
-INSERT INTO Reviews (UserId, MovieId, Rating, Comment)
+INSERT INTO "Reviews" ("UserId", "MovieId", "Rating", "Comment")
 VALUES
 (1, 1, 9.0, 'Absolutely stunning!'),
 (1, 2, 8.5, 'Loved the depth and story.'),
