@@ -18,4 +18,6 @@ public:
     std::string getEmail() const;
     std::string getSubscriptionType() const;
     std::chrono::system_clock::time_point getDateJoined() const;
+
+    bool operator==(const User &other) const;
 };

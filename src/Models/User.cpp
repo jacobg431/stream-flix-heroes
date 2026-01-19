@@ -26,3 +26,11 @@ std::chrono::system_clock::time_point User::getDateJoined() const
 {
     return _dateJoined;
 }
+
+bool User::operator==(const User &other) const
+{
+    return _userId == other._userId
+        && _name == other._name
+        && _email == other._email
+        && _subscriptionType == other._subscriptionType;
+}
