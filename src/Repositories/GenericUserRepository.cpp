@@ -9,9 +9,9 @@ GenericUserRepository::GenericUserRepository(DbConnection &dbConnection) : _dbCo
 User GenericUserRepository::selectUserById(int id) const
 {
     std::string query = std::string("")
-                        + "SELECT FirstName, LastName, UserId, Email, SubscriptionType, DateJoined "
-                        + "FROM Users "
-                        + "WHERE UserId = " + std::to_string(id) + " " 
+                        + "SELECT \"FirstName\", \"LastName\", \"UserId\", \"Email\", \"SubscriptionType\", \"DateJoined\" "
+                        + "FROM \"Users\" "
+                        + "WHERE \"UserId\" = " + std::to_string(id) + " " 
                         + _queryWhereClause + ";";
                         
     PGresult *result = _dbConnection.Execute(query);
@@ -24,6 +24,8 @@ User GenericUserRepository::selectUserById(int id) const
     std::string subscriptionType = PQgetvalue(result, 0, 4);
 
     User user(firstName, lastName, userId, email, subscriptionType);
+
+    PQclear(result);
 
     return user;
 }
@@ -59,8 +61,8 @@ User GenericUserRepository::selectUserByName(const std::string &firstName, const
 std::vector<User> GenericUserRepository::selectMultipleUsers(int amount, int offset) const
 {
     std::string query = std::string("")
-                        + "SELECT FirstName, LastName, UserId, Email, SubscriptionType, DateJoined "
-                        + "FROM Users " + _queryWhereClause + " "
+                        + "SELECT \"FirstName\", \"LastName\", \"UserId\", \"Email\", \"SubscriptionType\", \"DateJoined\" "
+                        + "FROM \"Users\" " + _queryWhereClause + " "
                         + "LIMIT " + std::to_string(amount) + " "
                         + "OFFSET " + std::to_string(offset) + ";";
 
@@ -81,13 +83,15 @@ std::vector<User> GenericUserRepository::selectMultipleUsers(int amount, int off
         users.push_back(user);
     }
 
+    PQclear(result);
+
     return users;
 }
 
 void GenericUserRepository::insertUser(const User &user)
 {
     std::string query = std::string("")
-                        + "INSERT INTO Users (FirstName, LastName, UserId, Email, SubscriptionType, DateJoined) "
+                        + "INSERT INTO \"Users\" (\"FirstName\", \"LastName\", \"UserId\", \"Email\", \"SubscriptionType\", \"DateJoined\") "
                         + "VALUES ('" + user.getFirstName() 
                         + "', '" + user.getLastName() 
                         + "', " + std::to_string(user.getId())
@@ -100,21 +104,23 @@ void GenericUserRepository::insertUser(const User &user)
 void GenericUserRepository::updateUser(const User &user)
 {
     std::string query = std::string("") 
-                        + "UPDATE Users SET " 
-                        + "FirstName = '" + user.getFirstName() + "', " 
-                        + "LastName = '" + user.getLastName() + "', "
-                        + "Email = '" + user.getEmail() + "', " 
-                        + "SubscriptionType = '" + user.getSubscriptionType() + "' " + "WHERE UserId = " + std::to_string(user.getId()) + ";";
+                        + "UPDATE \"Users\" SET " 
+                        + "\"FirstName\" = '" + user.getFirstName() + "', " 
+                        + "\"LastName\" = '" + user.getLastName() + "', "
+                        + "\"Email\" = '" + user.getEmail() + "', " 
+                        + "\"SubscriptionType\" = '" + user.getSubscriptionType() + "' " + "WHERE \"UserId\" = " + std::to_string(user.getId()) + ";";
 
     _dbConnection.Execute(query);
 }
 
 int GenericUserRepository::countUsers() const
 {
-    std::string query = std::string("") + "SELECT COUNT(*) FROM Users " + _queryWhereClause + ";";
+    std::string query = std::string("") + "SELECT COUNT(*) FROM \"Users\" " + _queryWhereClause + ";";
     PGresult *result = _dbConnection.Execute(query);
 
     int counts = std::stoi(PQgetvalue(result, 0, 0));
+
+    PQclear(result);
 
     return counts;
 }
