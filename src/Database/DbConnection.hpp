@@ -11,6 +11,8 @@ public:
 
     PGresult* Execute(const std::string &sql);
 
+    void ExecCommand(const std::string &sql);
+
 private:
     PGconn* _connection;
 

@@ -38,3 +38,9 @@ PGresult *DbConnection::Execute(const std::string &sql)
 
     return res;
 }
+
+void DbConnection::ExecCommand(const std::string &sql)
+{
+    PGresult *res = Execute(sql);
+    PQclear(res);
+}
